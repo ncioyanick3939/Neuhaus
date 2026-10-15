@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heizung ersetzen in Muster Stadt | Muster Neuhaus</title>
+<meta name="description" content="Wärmepumpe, Erdsonde oder Pelletheizung: Planung, Installation und Übergabe aus einer Hand.">
+
+<script>
+/* ==========================================================
+   HIER ERSETZEN: Firmendaten (alles andere bleibt unverändert)
+   ========================================================== */
+var CONFIG = {
+  brand:    "Muster Neuhaus",
+  legalName:"Muster Neuhaus GmbH",
+  place:    "Muster Stadt",
+  office:   "Musterstrasse 1, 1234 Muster Stadt",
+  workshop: "Werkstattweg 2, 1234 Muster Stadt",
+  phone1:   "000 000 00 00",
+  phone2:   "000 000 00 01",
+  email:    "info@beispiel.example"
+};
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16262f;
+    --ink-soft:#4a5c66;
+    --paper:#f5f7f6;
+    --white:#ffffff;
+    --sun:#f2b400;
+    --sun-deep:#8a6400;
+    --earth:#3f5a4a;
+    --line:#d3dbd8;
+    --radius:6px;
+    --head:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --body:"Source Serif 4","Charter","Iowan Old Style",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{background:var(--paper)}
+  body{margin:0;overflow-x:hidden;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6}
+  img,svg{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+  .wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+  /* Header */
+  header{background:var(--ink);color:var(--white)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:16px}
+  .brand{font-family:var(--head);font-weight:700;font-size:20px;letter-spacing:-.01em;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .brand i{width:22px;height:22px;border-radius:50%;background:var(--sun);display:inline-block;box-shadow:inset -5px -5px 0 rgba(0,0,0,.12)}
+  nav ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;font-family:var(--head);font-size:15px}
+  nav a{text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+  nav a:hover{border-color:var(--sun)}
+  nav a[aria-current]{border-color:var(--sun);font-weight:600}
+  .call{font-family:var(--head);font-weight:600;font-size:15px;background:var(--sun);color:var(--ink);padding:10px 16px;border-radius:var(--radius);text-decoration:none;white-space:nowrap}
+  .call:hover{background:#ffc928}
+
+  /* Mobile menu (hidden on desktop) */
+  .menu-btn,.menu-close,.menu-call{display:none}
+  .menu-btn{background:none;border:0;color:var(--white);width:44px;height:44px;padding:0;cursor:pointer;border-radius:var(--radius)}
+  .menu-btn svg,.menu-close svg{width:28px;height:28px;margin:auto}
+  .menu-btn svg path,.menu-close svg path{stroke:currentColor;stroke-width:2.2;stroke-linecap:round;fill:none}
+
+  /* Hero */
+  .hero{background:var(--ink);color:var(--white);padding:40px 0 72px}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+  h1{font-family:var(--head);font-weight:700;font-size:clamp(34px,5vw,56px);line-height:1.05;letter-spacing:-.025em;margin:0 0 20px}
+  .lead{font-size:20px;color:#d6e0e4;max-width:34em;margin:0 0 28px}
+  .btns{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{font-family:var(--head);font-weight:600;font-size:16px;padding:14px 22px;border-radius:var(--radius);text-decoration:none;display:inline-block}
+  .btn.primary{background:var(--sun);color:var(--ink)}
+  .btn.primary:hover{background:#ffc928}
+  .btn.ghost{border:1.5px solid #6f8591;color:var(--white)}
+  .btn.ghost:hover{border-color:var(--white)}
+  .facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:28px 0 0;padding:0;list-style:none;font-family:var(--head);font-size:14px;color:#b4c4cb}
+  .facts li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sun);margin-right:8px}
+  .hero svg{width:100%;height:auto}
+
+  /* Sections */
+  section{padding:72px 0}
+  h2{font-family:var(--head);font-weight:700;font-size:clamp(26px,3.4vw,36px);line-height:1.15;letter-spacing:-.02em;margin:0 0 12px}
+  .intro{color:var(--ink-soft);max-width:38em;margin:0 0 40px}
+
+  /* Systems: rows, not cards */
+  .system{display:grid;grid-template-columns:260px 1fr 280px;gap:36px;padding:32px 0;border-top:1px solid var(--line);align-items:start}
+  .system:last-of-type{border-bottom:1px solid var(--line)}
+  .system .pic{aspect-ratio:4/3;border-radius:var(--radius);background:#e3e9e6;border:1px dashed #9db0a8;display:grid;place-items:center;text-align:center;font-family:var(--head);font-size:13px;color:var(--ink-soft);padding:12px}
+  .system h3{font-family:var(--head);font-size:24px;line-height:1.2;letter-spacing:-.015em;margin:0 0 10px}
+  .system p{margin:0;color:#2c3f49}
+  dl{margin:0;font-family:var(--head);font-size:15px}
+  dl div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line)}
+  dl div:first-child{padding-top:0}
+  dt{color:var(--ink-soft)}
+  dd{margin:0;font-weight:600;text-align:right}
+
+  /* Process: a real sequence */
+  .process{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+  ol.steps li{counter-increment:s;position:relative;padding:28px 20px 0 0}
+  ol.steps li::before{content:counter(s);position:absolute;top:0;left:0;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--white);font-family:var(--head);font-weight:700;font-size:15px;display:grid;place-items:center;z-index:1}
+  ol.steps li::after{content:"";position:absolute;top:16px;left:34px;right:0;height:2px;background:var(--line)}
+  ol.steps li:last-child::after{display:none}
+  ol.steps li{padding-top:50px}
+  ol.steps h3{font-family:var(--head);font-size:17px;margin:0 0 6px;line-height:1.25}
+  ol.steps p{font-size:15.5px;margin:0;color:var(--ink-soft);line-height:1.5}
+
+  /* Solar combo */
+  .combo .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .combo .note{background:var(--earth);color:#eef3ef;border-radius:var(--radius);padding:32px}
+  .combo .note h3{font-family:var(--head);margin:0 0 10px;font-size:22px;color:var(--white)}
+  .combo .note p{margin:0 0 16px}
+  .combo .note a{font-family:var(--head);font-weight:600;color:var(--sun)}
+
+  /* References placeholder */
+  .refs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .refs .ph{aspect-ratio:3/2;border-radius:var(--radius);background:#e3e9e6;border:1px dashed #9db0a8;display:grid;place-items:center;font-family:var(--head);font-size:13px;color:var(--ink-soft);text-align:center;padding:12px}
+  .more{display:inline-block;margin-top:20px;font-family:var(--head);font-weight:600}
+
+  /* Form */
+  .offer{background:var(--ink);color:var(--white)}
+  .offer .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
+  .offer .intro{color:#c3d1d7}
+  .contact{font-family:var(--head);font-size:16px;line-height:1.7;margin-top:28px}
+  .contact a{color:var(--sun);text-decoration:none;font-weight:600}
+  .contact small{display:block;color:#9fb2ba;font-size:14px;margin-top:14px;line-height:1.5}
+  form{background:var(--white);color:var(--ink);padding:32px;border-radius:var(--radius);display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .full{grid-column:1/-1}
+  label{display:block;font-family:var(--head);font-size:14px;font-weight:600;margin-bottom:6px}
+  label span{font-weight:400;color:var(--ink-soft)}
+  input,select,textarea{width:100%;font:inherit;font-size:16px;padding:12px 13px;border:1.5px solid #b7c4c0;border-radius:var(--radius);background:var(--white);color:var(--ink)}
+  textarea{min-height:92px;resize:vertical}
+  input:focus,select:focus,textarea:focus{outline:3px solid var(--sun);outline-offset:0;border-color:var(--ink)}
+  form .btn{border:0;cursor:pointer;font-size:17px;justify-self:start}
+  .privacy{font-family:var(--head);font-size:13px;color:var(--ink-soft);margin:0;align-self:center}
+
+  footer{background:#0e1a21;color:#a9bbc3;font-family:var(--head);font-size:14px;padding:40px 0}
+  footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
+  footer h4{color:var(--white);font-size:14px;margin:0 0 8px}
+  footer p{margin:0 0 4px}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--white)}
+  .copy{grid-column:1/-1;border-top:1px solid #243844;padding-top:20px;margin-top:8px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  @media (max-width:900px){
+    .hero .wrap,.combo .wrap,.offer .wrap{grid-template-columns:1fr;gap:36px}
+    .system{grid-template-columns:1fr;gap:18px}
+    .system .pic{aspect-ratio:16/9;max-width:420px}
+    ol.steps{grid-template-columns:1fr;gap:6px}
+    ol.steps li{padding:0 0 22px 52px}
+    ol.steps li::after{top:34px;bottom:0;left:16px;right:auto;width:2px;height:auto}
+    ol.steps li{padding-top:4px}
+    .refs{grid-template-columns:1fr 1fr}
+    footer .wrap{grid-template-columns:1fr}
+    .bar .call{display:none}
+    .menu-btn{display:grid}
+    nav{position:fixed;inset:0;z-index:50;background:var(--ink);display:none;flex-direction:column;align-items:center;padding:calc(96px + env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));overflow-y:auto}
+    body.menu-open{overflow:hidden}
+    body.menu-open nav{display:flex}
+    nav ul{flex-direction:column;gap:0;width:min(340px,100%);font-size:22px;text-align:center}
+    nav li{border-bottom:1px solid #2b3d48}
+    nav li:first-child{border-top:1px solid #2b3d48}
+    nav a{display:block;padding:22px 0;border-bottom:0}
+    nav a:hover{color:var(--sun)}
+    nav a[aria-current]{color:var(--sun);font-weight:600}
+    .menu-close{display:grid;position:absolute;top:calc(18px + env(safe-area-inset-top,0px));right:max(20px,env(safe-area-inset-right,0px));width:44px;height:44px;background:none;border:0;color:var(--white);cursor:pointer;padding:0}
+    .menu-call{display:inline-block;margin-top:36px;font-family:var(--head);font-weight:600;font-size:18px;background:var(--sun);color:var(--ink);padding:14px 26px;border-radius:var(--radius);text-decoration:none}
+    form{grid-template-columns:1fr;padding:22px}
+    section{padding:52px 0}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#"><i aria-hidden="true"></i><span data-c="brand">Muster Neuhaus</span></a>
+    <nav id="hauptmenue" aria-label="Hauptnavigation">
+      <button class="menu-close" type="button" aria-label="Menü schliessen"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 5l18 18M23 5L5 23"/></svg></button>
+      <ul>
+        <li><a href="#">Start</a></li>
+        <li><a href="#" aria-current="page">Heizung</a></li>
+        <li><a href="#">Sanitär</a></li>
+        <li><a href="#">Solartechnik</a></li>
+        <li><a href="#">Referenzen</a></li>
+        <li><a href="#">Jobs</a></li>
+      </ul>
+      <a class="menu-call" data-phone="phone1" href="#">000 000 00 00</a>
+    </nav>
+    <a class="call" data-phone="phone1" href="#">000 000 00 00</a>
+    <button class="menu-btn" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="hauptmenue"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M4 8h20M4 14h20M4 20h20"/></svg></button>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Eine neue Heizung, die zu Ihrem Haus passt.</h1>
+      <p class="lead">Wärmepumpe, Erdsonde oder Pelletheizung: Wir planen, installieren und übergeben Ihre Anlage. Aus <span data-c="place">Muster Stadt</span>, für die ganze Region.</p>
+      <div class="btns">
+        <a class="btn primary" href="#offerte">Offerte anfordern</a>
+        <a class="btn ghost" data-phone="phone1" href="#">Direkt anrufen</a>
+      </div>
+      <ul class="facts">
+        <li>Planung bis Übergabe aus einer Hand</li>
+        <li>Inbetriebnahme durch den Hersteller</li>
+        <li>Kombinierbar mit Solaranlage</li>
+      </ul>
+    </div>
+
+    <!-- Hausschnitt: woher die Wärme kommen kann -->
+    <svg viewBox="0 0 560 420" role="img" aria-labelledby="hs-t hs-d">
+      <title id="hs-t">Haus im Schnitt mit drei Wärmequellen</title>
+      <desc id="hs-d">Ein Haus mit Solarmodulen auf dem Dach, einer Luft-Wasser-Wärmepumpe aussen, einer Erdsonde im Boden und einem Pelletkessel im Keller.</desc>
+      <rect x="0" y="0" width="560" height="420" fill="#1d3340" rx="8"/>
+      <!-- Sonne -->
+      <circle cx="478" cy="62" r="26" fill="#f2b400"/>
+      <g stroke="#f2b400" stroke-width="3" stroke-linecap="round">
+        <path d="M478 22v10M478 92v10M438 62h10M508 62h10M450 34l7 7M499 83l7 7M506 34l-7 7M457 83l-7 7"/>
+      </g>
+      <!-- Boden -->
+      <rect x="0" y="262" width="560" height="158" fill="#2c4a3b"/>
+      <rect x="0" y="262" width="560" height="4" fill="#4f7a62"/>
+      <!-- Haus -->
+      <path d="M96 262V150L216 72l120 78v112z" fill="#f5f7f6"/>
+      <path d="M84 156L216 64l132 92" fill="none" stroke="#f5f7f6" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- Solarmodule -->
+      <g fill="#2e6f9e" stroke="#9cc7e6" stroke-width="2">
+        <path d="M168 104l34-24 8 6-34 24z"/>
+        <path d="M204 128l34-24 8 6-34 24z"/>
+        <path d="M240 152l-34 24" opacity="0"/>
+      </g>
+      <!-- Fenster/Tür -->
+      <rect x="128" y="176" width="40" height="36" fill="#1d3340"/>
+      <rect x="248" y="176" width="40" height="36" fill="#1d3340"/>
+      <rect x="196" y="204" width="40" height="58" fill="#3f5a4a"/>
+      <!-- Keller -->
+      <rect x="96" y="262" width="240" height="72" fill="#e3e9e6"/>
+      <!-- Pelletkessel -->
+      <rect x="116" y="278" width="62" height="48" rx="4" fill="#16262f"/>
+      <rect x="126" y="288" width="42" height="12" fill="#f2b400"/>
+      <circle cx="147" cy="315" r="4" fill="#f2b400"/>
+      <rect x="196" y="286" width="54" height="40" rx="4" fill="#4a5c66"/>
+      <text x="223" y="311" font-family="Inter,sans-serif" font-size="12" fill="#fff" text-anchor="middle">Speicher</text>
+      <!-- Aussengeraet -->
+      <rect x="372" y="222" width="76" height="40" rx="4" fill="#cfd8dc"/>
+      <circle cx="400" cy="242" r="13" fill="none" stroke="#16262f" stroke-width="3"/>
+      <path d="M400 232v20M390 242h20" stroke="#16262f" stroke-width="2.5"/>
+      <path d="M336 244h36" stroke="#f2b400" stroke-width="4" stroke-linecap="round"/>
+      <!-- Luftpfeile -->
+      <g stroke="#9cc7e6" stroke-width="3" stroke-linecap="round" fill="none">
+        <path d="M470 210c-14 0-20 6-30 6"/><path d="M476 236c-14 0-20 4-28 4"/>
+      </g>
+      <!-- Erdsonde -->
+      <path d="M300 334V396" stroke="#f2b400" stroke-width="5" stroke-linecap="round"/>
+      <path d="M312 334V396" stroke="#f2b400" stroke-width="5" stroke-linecap="round"/>
+      <path d="M300 396h12" stroke="#f2b400" stroke-width="5" stroke-linecap="round"/>
+      <path d="M336 300h8c0 0 0 34-32 34" fill="none" stroke="#f2b400" stroke-width="4"/>
+      <!-- Labels -->
+      <g font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="#fff">
+        <text x="372" y="206">Luft</text>
+        <text x="330" y="390">Erde</text>
+        <text x="116" y="356" fill="#fff">Holz</text>
+        <text x="228" y="52" text-anchor="middle" fill="#9cc7e6">Sonne</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<section id="systeme">
+  <div class="wrap">
+    <h2>Drei Wege, Ihr Haus zu heizen</h2>
+    <p class="intro">Welche Lösung passt, hängt von Gebäude, Grundstück und Budget ab. Wir schauen vor Ort an, was bei Ihnen sinnvoll ist, und sagen Ihnen auch, wenn etwas nicht passt.</p>
+
+    <article class="system">
+      <div class="pic">Foto: Luft-Wasser-Wärmepumpe (Aussengerät)</div>
+      <div>
+        <h3>Luft-Wasser-Wärmepumpe</h3>
+        <p>Die Wärmepumpe holt Wärme aus der Aussenluft und heizt damit Haus und Warmwasser. Sie steht innen oder aussen und braucht keine Bohrung. Das macht sie zur ersten Wahl bei vielen Renovationen und Neubauten, besonders zusammen mit einer Solaranlage.</p>
+      </div>
+      <dl>
+        <div><dt>Wärmequelle</dt><dd>Aussenluft</dd></div>
+        <div><dt>Bohrung</dt><dd>Nicht nötig</dd></div>
+        <div><dt>Aufstellung</dt><dd>Innen oder aussen</dd></div>
+        <div><dt>Passt gut zu</dt><dd>Neubau, Renovation</dd></div>
+      </dl>
+    </article>
+
+    <article class="system">
+      <div class="pic">Foto: Bohrung / Erdsonde</div>
+      <div>
+        <h3>Erdsonde mit Sole-Wasser-Wärmepumpe</h3>
+        <p>Eine Erdsonde nutzt die gleichmässige Wärme aus dem Boden. Sie arbeitet sehr effizient und lässt sich gut mit Solarstrom kombinieren. Bohrung, Installation und Bewilligungen übernehmen wir für Sie.</p>
+      </div>
+      <dl>
+        <div><dt>Wärmequelle</dt><dd>Erdwärme</dd></div>
+        <div><dt>Bohrung</dt><dd>Ja, mit Bewilligung</dd></div>
+        <div><dt>Effizienz</dt><dd>Sehr hoch</dd></div>
+        <div><dt>Passt gut zu</dt><dd>Grössere Häuser</dd></div>
+      </dl>
+    </article>
+
+    <article class="system">
+      <div class="pic">Foto: Pelletkessel im Heizraum</div>
+      <div>
+        <h3>Holzkessel und Pelletheizung</h3>
+        <p>Holz ist ein erneuerbarer Brennstoff aus der Region. Unsere Holz- und Pelletheizungen liefern zuverlässig Wärme für Heizung und Warmwasser und lassen sich mit Solarthermie oder Photovoltaik ergänzen.</p>
+      </div>
+      <dl>
+        <div><dt>Brennstoff</dt><dd>Holz, Pellets</dd></div>
+        <div><dt>Bohrung</dt><dd>Nicht nötig</dd></div>
+        <div><dt>Platzbedarf</dt><dd>Heizraum und Lager</dd></div>
+        <div><dt>Passt gut zu</dt><dd>Altbau, hoher Wärmebedarf</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section class="process" id="ablauf">
+  <div class="wrap">
+    <h2>So läuft Ihr Heizungsersatz ab</h2>
+    <p class="intro">Fünf Schritte, ein Ansprechpartner. Sie wissen jederzeit, wo Ihr Projekt steht.</p>
+    <ol class="steps">
+      <li><h3>Beratung vor Ort</h3><p>Wir sehen uns Haus, Heizraum und Grundstück an.</p></li>
+      <li><h3>Offerte</h3><p>Sie erhalten eine klare Offerte mit Varianten.</p></li>
+      <li><h3>Förderung klären</h3><p>Wir zeigen, welche Förderbeiträge möglich sind.</p></li>
+      <li><h3>Installation</h3><p>Fachgerechter Einbau, termingerecht geplant.</p></li>
+      <li><h3>Inbetriebnahme und Übergabe</h3><p>Der Hersteller nimmt die Anlage in Betrieb, wir übergeben sie Ihnen.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="combo">
+  <div class="wrap">
+    <div>
+      <h2>Heizung und Solaranlage zusammen denken</h2>
+      <p class="intro" style="margin-bottom:0">Eine Wärmepumpe läuft mit Strom. Kommt dieser vom eigenen Dach, sinken Ihre Heizkosten spürbar. Wir bieten beides aus einer Hand und stimmen die Anlagen von Anfang an aufeinander ab.</p>
+    </div>
+    <div class="note">
+      <h3>Wärmepumpe plus Photovoltaik</h3>
+      <p>Die Basis für ein Haus, das einen Grossteil seiner Energie selbst erzeugt.</p>
+      <a href="#">Mehr zur Solartechnik</a>
+    </div>
+  </div>
+</section>
+
+<section id="referenzen" style="padding-top:0">
+  <div class="wrap">
+    <h2>Anlagen aus der Region</h2>
+    <p class="intro">Hier sehen Sie, was wir in den letzten Jahren eingebaut haben.</p>
+    <div class="refs">
+      <div class="ph">Referenzfoto 1<br>mit Ort und Anlagentyp</div>
+      <div class="ph">Referenzfoto 2<br>mit Ort und Anlagentyp</div>
+      <div class="ph">Referenzfoto 3<br>mit Ort und Anlagentyp</div>
+    </div>
+    <a class="more" href="#">Alle Referenzen ansehen</a>
+  </div>
+</section>
+
+<section class="offer" id="offerte">
+  <div class="wrap">
+    <div>
+      <h2>Offerte anfordern</h2>
+      <p class="intro">Schreiben Sie uns kurz, worum es geht. Wir melden uns und vereinbaren einen Termin bei Ihnen vor Ort.</p>
+      <div class="contact">
+        <strong><span data-c="legalName">Muster Neuhaus GmbH</span></strong><br>
+        <span data-c="office">Musterstrasse 1, 1234 Muster Stadt</span><br>
+        <a data-phone="phone1" href="#">000 000 00 00</a> · <a data-phone="phone2" href="#">000 000 00 01</a><br>
+        <a data-email href="#">info@beispiel.example</a>
+        <small>Sie erreichen uns lieber persönlich? Rufen Sie einfach an.</small>
+      </div>
+    </div>
+
+    <form id="offerform">
+      <div><label for="vn">Vorname</label><input id="vn" name="vorname" autocomplete="given-name" required></div>
+      <div><label for="nn">Nachname</label><input id="nn" name="nachname" autocomplete="family-name" required></div>
+      <div><label for="em">E-Mail</label><input id="em" name="email" type="email" autocomplete="email" required></div>
+      <div><label for="tel">Telefon</label><input id="tel" name="telefon" type="tel" autocomplete="tel" required></div>
+      <div class="full"><label for="ad">Adresse des Gebäudes</label><input id="ad" name="adresse" autocomplete="street-address" required></div>
+      <div class="full">
+        <label for="art">Wofür möchten Sie eine Offerte?</label>
+        <select id="art" name="anliegen" required>
+          <option value="">Bitte wählen</option>
+          <option>Luft-Wasser-Wärmepumpe</option>
+          <option>Erdsonde und Wärmepumpe</option>
+          <option>Holzkessel oder Pelletheizung</option>
+          <option>Heizung mit Solaranlage</option>
+          <option>Ich weiss es noch nicht, bitte beraten Sie mich</option>
+        </select>
+      </div>
+      <div class="full"><label for="msg">Nachricht <span>(freiwillig)</span></label><textarea id="msg" name="nachricht" placeholder="Zum Beispiel: aktuelle Heizung, Baujahr des Hauses"></textarea></div>
+      <button class="btn primary" type="submit">Offerte anfordern</button>
+      <p class="privacy">Ihre Angaben verwenden wir nur für diese Anfrage.</p>
+      <p class="full privacy" id="thanks" role="status" hidden>Danke für Ihre Anfrage. In dieser Version wird noch nichts versendet.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Büro</h4>
+      <p><span data-c="office">Musterstrasse 1, 1234 Muster Stadt</span></p>
+      <h4 style="margin-top:14px">Lager und Werkstatt</h4>
+      <p><span data-c="workshop">Werkstattweg 2, 1234 Muster Stadt</span></p>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <p><a data-phone="phone1" href="#">+41 26 495 27 76</a></p>
+      <p><a data-phone="phone2" href="#">+41 79 217 51 20</a></p>
+      <p><a data-email href="#">info@beispiel.example</a></p>
+    </div>
+    <div>
+      <h4>Mehr</h4>
+      <p><a href="#">Datenschutzerklärung</a></p>
+      <p><a href="#">Barrierefreiheitserklärung</a></p>
+    </div>
+    <div class="copy">
+      <span>© <span data-c="year">2026</span> <span data-c="legalName">Muster Neuhaus GmbH</span></span>
+      <span>Beispielseite mit erfundenen Firmendaten</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  (function(){
+    var b=document.body, open=document.querySelector('.menu-btn'), nav=document.getElementById('hauptmenue');
+    function set(v){ b.classList.toggle('menu-open',v); open.setAttribute('aria-expanded',v?'true':'false'); }
+    open.addEventListener('click',function(){ set(true); });
+    nav.querySelector('.menu-close').addEventListener('click',function(){ set(false); open.focus(); });
+    nav.addEventListener('click',function(e){ if(e.target.closest('a')) set(false); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
+  })();
+
+
+  // Daten aus CONFIG in die Seite einsetzen
+  (function(){
+    var C = CONFIG;
+    document.title = 'Heizung ersetzen in ' + C.place + ' | ' + C.brand;
+    document.querySelectorAll('[data-c]').forEach(function(el){
+      var k = el.getAttribute('data-c');
+      if (k === 'year') el.textContent = new Date().getFullYear();
+      else if (C[k] != null) el.textContent = C[k];
+    });
+    document.querySelectorAll('[data-phone]').forEach(function(a){
+      var n = C[a.getAttribute('data-phone')];
+      a.textContent = n; a.href = 'tel:' + n.replace(/[^\d+]/g, '');
+    });
+    document.querySelectorAll('[data-email]').forEach(function(a){
+      a.textContent = C.email; a.href = 'mailto:' + C.email;
+    });
+    var f = document.getElementById('offerform'), t = document.getElementById('thanks');
+    f.addEventListener('submit', function(e){ e.preventDefault(); t.hidden = false; f.reset(); });
+  })();
+
+</script>
+</body>
+</html>
