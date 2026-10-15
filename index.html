@@ -88,7 +88,7 @@
         </div>
       </div>
 
-      <form id="offerform">
+      <form data-form data-subject="Offertanfrage von der Website" data-thanks="Danke für Ihre Anfrage. Wir melden uns bei Ihnen.">
         <div><label for="vn">Vorname</label><input id="vn" name="vorname" autocomplete="given-name" required></div>
         <div><label for="nn">Nachname</label><input id="nn" name="nachname" autocomplete="family-name" required></div>
         <div><label for="em">E-Mail</label><input id="em" name="email" type="email" autocomplete="email" required></div>
@@ -108,7 +108,7 @@
         <div class="full"><label for="msg">Nachricht <span>(freiwillig)</span></label><textarea id="msg" name="nachricht"></textarea></div>
         <button class="btn red" type="submit">Offerte anfordern</button>
         <p class="hint">Ihre Angaben verwenden wir nur für diese Anfrage.</p>
-        <p class="full hint" id="thanks" role="status" hidden>Danke für Ihre Anfrage. In dieser Testversion wird noch nichts versendet.</p>
+        <p class="full hint status" role="status" hidden></p>
       </form>
     </div>
   </section>

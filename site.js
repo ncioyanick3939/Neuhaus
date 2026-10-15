@@ -21,6 +21,25 @@
   nav.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setMenu(false); });
 
-  var f = document.getElementById('offerform'), t = document.getElementById('thanks');
-  if (f) f.addEventListener('submit', function(e){ e.preventDefault(); t.hidden = false; f.reset(); });
+  var MAXMB = 10;
+  document.querySelectorAll('form[data-form]').forEach(function(f){
+    var t = f.querySelector('.status'), btn = f.querySelector('button[type=submit]');
+    function say(msg, bad){ t.hidden = false; t.textContent = msg; t.classList.toggle('bad', !!bad); }
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var size = 0; f.querySelectorAll('input[type=file]').forEach(function(i){ for (var k = 0; k < i.files.length; k++) size += i.files[k].size; });
+      if (size > MAXMB * 1024 * 1024) { say('Die Dateien sind zusammen grösser als ' + MAXMB + ' MB. Bitte kleiner machen oder weniger Dateien wählen.', true); return; }
+      if (!C.formAction) { say('Testmodus: Es wird noch nichts versendet. Die Formular-Adresse fehlt in config.js.'); return; }
+      var fd = new FormData(f);
+      fd.append('_subject', f.getAttribute('data-subject') || 'Anfrage von der Website');
+      fd.append('_captcha', 'false');
+      btn.disabled = true; say('Wird gesendet …');
+      fetch(C.formAction, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+        .then(function(r){ if (!r.ok) throw new Error(r.status); f.reset(); say(f.getAttribute('data-thanks')); })
+        .catch(function(){ say('Das Senden hat nicht geklappt. Bitte versuchen Sie es nochmal oder rufen Sie uns an.', true); })
+        .then(function(){ btn.disabled = false; });
+    });
+  });
+  var sel = document.getElementById('stelle');
+  if (sel) { var q = new URLSearchParams(location.search).get('stelle'); if (q) for (var j = 0; j < sel.options.length; j++) if (sel.options[j].text === q) sel.selectedIndex = j; }
 })();

@@ -13,6 +13,8 @@ var CONFIG = {
   phone2:    "+41 79 217 51 20",
   email:     "info@solartechnikneuhaus.ch",
   instagram: "https://www.instagram.com/solartechnikneuhaus/",
+  // Formular-Adresse für Offerte und Bewerbung (siehe Anleitung). Leer = Testmodus, es wird nichts gesendet.
+  formAction: "",
   heroTitle: "Ihr Experte für erneuerbare Energien und Heizungssysteme",
   heroLead:  "Sanitär, Heizung und Solartechnik aus Heitenried. Wir beraten Sie persönlich, kompetent und unverbindlich."
 };
