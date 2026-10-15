@@ -115,8 +115,10 @@
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+  .logo{display:flex;align-items:center;gap:6px;text-decoration:none}
   .logo img{height:104px;width:auto}
-  @media (max-width:900px){.logo img{height:80px}}
+  .brand{font-family:var(--head);font-weight:600;font-size:36px;line-height:1;color:#d8392e;letter-spacing:.01em}
+  @media (max-width:900px){.logo img{height:80px}.brand{font-size:26px}}
 
   /* Unterseiten */
   .page-head{background:var(--sky);padding-block:64px 56px}
