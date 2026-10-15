@@ -115,6 +115,9 @@
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+  .logo img{height:104px;width:auto}
+  @media (max-width:900px){.logo img{height:80px}}
+
   /* Unterseiten */
   .page-head{background:var(--sky);padding-block:64px 56px}
   .page-head h1{margin-bottom:18px}
