@@ -157,6 +157,15 @@
   .logos li{background:#fff;border:1px solid var(--line);aspect-ratio:3/2;display:grid;place-items:center;overflow:hidden}
   .logos img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
 
+
+  .jobs{list-style:none;margin:0;padding:0;max-width:52em}
+  .jobs li{display:grid;grid-template-columns:56px 1fr;gap:4px 12px;padding:28px 0;border-top:1px solid var(--line)}
+  .jobs li:last-child{border-bottom:1px solid var(--line)}
+  .jobs .no{font-family:var(--head);font-size:30px;line-height:1.1;color:var(--red)}
+  .jobs h2{font-size:clamp(22px,2.4vw,28px);margin:0 0 8px}
+  .jobs p{margin:0;max-width:38em}
+  .banner{display:block;width:100%;height:auto;max-height:340px;object-fit:cover}
+
   /* Fusszeile mit allen Kontaktdaten */
   footer{padding-block:52px 28px}
   footer .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:28px 40px;align-items:start;justify-content:initial}
